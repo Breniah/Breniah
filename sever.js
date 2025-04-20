@@ -3,21 +3,19 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(express.static(__dirname)); // Serve static files like HTML and CSS
 
-// Dummy user data for authentication
+
 const users = [
     { username: 'admin', password: 'password123' },
     { username: 'user1', password: 'mypassword' }
 ];
 
-// Handle login form submission
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
-    // Check if the user exists
+
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {

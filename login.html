@@ -3,84 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bakery Website</title>
+    <title>Login</title>
     <link rel="stylesheet" href="color.css">
 </head>
 <body>
     <header>
-        <div class="top-bar">CoCo Solstice</div>
-        <nav>
-            <div class="logo">Bakery Business</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Blog</a></li>
-            </ul>
-            <div class="auth-links">
-                <a href="#">Log In</a>
-            </div>
-        </nav>
+        <h1>Login to CoCo Solstice</h1>
     </header>
-
-    <section class="hero">
-        <h1>Shop All Our Cute Little Bakery</h1>
-        <button>Shop Our Delicious Treats</button>
-    </section>
-
-    <section class="favorites">
-        <h2>Shop Our Customer's Favorites</h2>
-        <div class="products">
-            <img src="https://i.pinimg.com/736x/6b/f1/4a/6bf14afb3dc527f3c16f3a396bb475d4.jpg" alt="Cake pans">
-        </div>
-    </section>
-
-    <section class="mission">
-        <h2>Our Mission</h2>
-        <p>the best things in life are Sweet, like our cakes.</p>
-    </section>
-
-    <section class="creations">
-        <h2>Our Creations</h2>
-        <div class="categories">
-            <li>cupcakes</li>
-            <li>cakes</li>
-            <li>cookies</li>
-            <li>pastries</li>
-
-        </div>
-    </section>
-
-    <section class="reviews">
-        <h2>Customer Reviews</h2>
-        <div class="review-cards">
-           <p> <b>Tiffany R:</b>The cakes are the best. They get here so fast, just in time for my wedding.😀</p>
-           <p> <b>Rosie T:</b>Ordered alot of cupcakes for my son's birthday. On the same day they were here. Fast and reliable.</p>
-        </div>
-    </section>
-
+    <main>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </main>
     <footer>
-        <h1><a href="#">Contact Us</a></h1>
-        <a href="mailto:cocosolstice@cocosolstice.com">cocosolstice@cocosolstice.com</a>.<br>
-        <p> 123-456-7890</p>
-        <ul>
-            <h1><a href="#">Follow Us</a></h1>
-            <!-- Follow Us Links -->
-            <li><a href="https://www.instagram.com/@cocosolstice" target="_blank">Follow Us on Instagram</a></li>
-            <li><a href="https://www.lemon8-app.com/@cocosolstice" target="_blank">Follow Us on Lemon8</a></li>
-            <li><a href="https://www.tiktok.com/@cocosolstice" target="_blank">Follow Us on TikTok</a></li>
-        </ul>
+        <p>&copy; 2025 CoCo Solstice. All rights reserved.</p>
     </footer>
 
-    <form id="loginForm" action="/login" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Login</button>
-    </form>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                // Store the username in localStorage
+                localStorage.setItem('username', username);
+                // Redirect to index.html
+                window.location.href = 'index.html';
+            } else {
+                alert('Login failed. Please check your credentials.');
+            }
+        });
+    </script>
 </body>
 </html>

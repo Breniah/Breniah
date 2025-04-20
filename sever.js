@@ -4,19 +4,14 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public')); // Serve static files like login.html
+app.use(bodyParser.json());
+app.use(express.static(__dirname)); // Serve static files like HTML and CSS
 
 // Dummy user data for authentication
 const users = [
     { username: 'admin', password: 'password123' },
     { username: 'user1', password: 'mypassword' }
 ];
-
-// Route to serve the login page
-app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/login.html');
-});
 
 // Handle login form submission
 app.post('/login', (req, res) => {
@@ -26,9 +21,9 @@ app.post('/login', (req, res) => {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
-        res.send(`<h1>Welcome, ${username}!</h1><p>Login successful.</p>`);
+        res.status(200).send('Login successful');
     } else {
-        res.status(401).send('<h1>Login Failed</h1><p>Invalid username or password.</p>');
+        res.status(401).send('Invalid username or password');
     }
 });
 

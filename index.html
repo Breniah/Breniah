@@ -15,11 +15,12 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#blog">Blog</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blog</a></li>
             </ul>
             <div class="auth-links">
-                <a href="#">Log In</a>
+                <a href="login.html" id="loginLink">Log In</a>
+                <span id="usernameDisplay" style="display: none;"></span>
             </div>
         </nav>
     </header>
@@ -60,34 +61,10 @@
         </div>
     </section>
 
-    <section id="blog" class="blog">
-        <h2>Our Latest Creations</h2>
-        <div class="blog-posts">
-            <article class="blog-post">
-                <img src="https://example.com/cupcakes.jpg" alt="Cupcakes">
-                <h3>Delicious Cupcakes</h3>
-                <p>Try our freshly baked cupcakes with a variety of flavors.</p>
-                <a href="#">Read More</a>
-            </article>
-            <article class="blog-post">
-                <img src="https://example.com/cakes.jpg" alt="Cakes">
-                <h3>Custom Cakes</h3>
-                <p>Order custom cakes for your special occasions.</p>
-                <a href="#">Read More</a>
-            </article>
-            <article class="blog-post">
-                <img src="https://example.com/cookies.jpg" alt="Cookies">
-                <h3>Homemade Cookies</h3>
-                <p>Enjoy our freshly baked cookies, perfect for any time of the day.</p>
-                <a href="#">Read More</a>
-            </article>
-        </div>
-    </section>
-
-    <footer id="contact">
+    <footer>
         <h1><a href="#">Contact Us</a></h1>
         <a href="mailto:cocosolstice@cocosolstice.com">cocosolstice@cocosolstice.com</a>.<br>
-        <p>123-456-7890</p>
+        <p> 123-456-7890</p>
         <ul>
             <h1><a href="#">Follow Us</a></h1>
             <!-- Follow Us Links -->
@@ -96,5 +73,26 @@
             <li><a href="https://www.tiktok.com/@cocosolstice" target="_blank">Follow Us on TikTok</a></li>
         </ul>
     </footer>
+
+    <form id="loginForm" action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        // Check if a username is stored in localStorage
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.getElementById('loginLink').style.display = 'none';
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            usernameDisplay.textContent = `Welcome, ${username}`;
+            usernameDisplay.style.display = 'inline';
+        }
+    </script>
 </body>
 </html>

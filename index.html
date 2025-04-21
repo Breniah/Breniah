@@ -43,16 +43,23 @@
 
     <section class="creations">
         <h2>Our Creations</h2>
-        <div class="categories">
-            <li>cupcakes</li>
-            <img src="https://i.pinimg.com/736x/0e/b0/16/0eb0160cb2c1e3f6973253deafbb520f.jpg" alt="Cupakes">
-            <li>cakes</li>
-            <img src="https://i.pinimg.com/736x/91/ab/39/91ab3914ceec53b3c0854ef68a9147a4.jpg" alt="cakes">
-            <li>cookies</li>
-            <img src="https://i.pinimg.com/736x/8f/d0/6f/8fd06f152e656afb14db99db365d6889.jpg" alt="cookies">
-            <li>pastries</li>
-            <img src="https://i.pinimg.com/736x/3d/e2/8c/3de28c91a675305ab3f05292ef85682c.jpg" alt="pastries">
-
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('cupcakes')">Cupcakes</button>
+            <button class="tab-button" onclick="showTab('cakes')">Cakes</button>
+            <button class="tab-button" onclick="showTab('cookies')">Cookies</button>
+            <button class="tab-button" onclick="showTab('pastries')">Pastries</button>
+        </div>
+        <div class="tab-content" id="cupcakes">
+            <img src="https://i.pinimg.com/736x/0e/b0/16/0eb0160cb2c1e3f6973253deafbb520f.jpg" alt="Cupcakes">
+        </div>
+        <div class="tab-content" id="cakes" style="display: none;">
+            <img src="https://i.pinimg.com/736x/91/ab/39/91ab3914ceec53b3c0854ef68a9147a4.jpg" alt="Cakes">
+        </div>
+        <div class="tab-content" id="cookies" style="display: none;">
+            <img src="https://i.pinimg.com/736x/8f/d0/6f/8fd06f152e656afb14db99db365d6889.jpg" alt="Cookies">
+        </div>
+        <div class="tab-content" id="pastries" style="display: none;">
+            <img src="https://i.pinimg.com/736x/3d/e2/8c/3de28c91a675305ab3f05292ef85682c.jpg" alt="Pastries">
         </div>
     </section>
 
@@ -88,20 +95,22 @@
     </form>
 
     <script>
-      
+        // Retrieve the username from localStorage
         const username = localStorage.getItem('username');
         if (username) {
             document.getElementById('userGreeting').textContent = `Welcome, ${username}!`;
         }
 
         function showTab(tabId) {
-
+            // Hide all tab contents
             const tabContents = document.querySelectorAll('.tab-content');
             tabContents.forEach(content => content.style.display = 'none');
 
+            // Remove active class from all buttons
             const tabButtons = document.querySelectorAll('.tab-button');
             tabButtons.forEach(button => button.classList.remove('active'));
 
+            // Show the selected tab and add active class to the button
             document.getElementById(tabId).style.display = 'block';
             document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
         }

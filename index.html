@@ -88,9 +88,22 @@
     </form>
 
     <script>
+      
         const username = localStorage.getItem('username');
         if (username) {
             document.getElementById('userGreeting').textContent = `Welcome, ${username}!`;
+        }
+
+        function showTab(tabId) {
+
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.style.display = 'none');
+
+            const tabButtons = document.querySelectorAll('.tab-button');
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            document.getElementById(tabId).style.display = 'block';
+            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
         }
     </script>
 </body>

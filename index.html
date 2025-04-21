@@ -8,25 +8,24 @@
 </head>
 <body>
     <header>
-        <div class="top-bar">CoCo Solstice</div>
+        <div class="top-bar">
+            <span>CoCo Solstice</span>
+            <span id="userGreeting" style="float: right;"></span>
+        </div>
         <nav>
-            <div class="logo">Bakery Business</div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="shop.html">Shop</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Log In</a></li>
             </ul>
-            <div class="auth-links">
-                <a href="login.html" id="loginLink">Log In</a>
-                <span id="usernameDisplay" style="display: none;"></span>
-            </div>
         </nav>
     </header>
 
     <section class="hero">
         <h1>Shop All Our Cute Little Bakery</h1>
+        <button onclick="location.href='signup.html'">Sign Up</button>
         <button>Shop Our Delicious Treats</button>
     </section>
 
@@ -46,9 +45,13 @@
         <h2>Our Creations</h2>
         <div class="categories">
             <li>cupcakes</li>
+            <img src="https://i.pinimg.com/736x/0e/b0/16/0eb0160cb2c1e3f6973253deafbb520f.jpg" alt="Cupakes">
             <li>cakes</li>
+            <img src="https://i.pinimg.com/736x/91/ab/39/91ab3914ceec53b3c0854ef68a9147a4.jpg" alt="cakes">
             <li>cookies</li>
+            <img src="https://i.pinimg.com/736x/8f/d0/6f/8fd06f152e656afb14db99db365d6889.jpg" alt="cookies">
             <li>pastries</li>
+            <img src="https://i.pinimg.com/736x/3d/e2/8c/3de28c91a675305ab3f05292ef85682c.jpg" alt="pastries">
 
         </div>
     </section>
@@ -85,13 +88,9 @@
     </form>
 
     <script>
-        // Check if a username is stored in localStorage
         const username = localStorage.getItem('username');
         if (username) {
-            document.getElementById('loginLink').style.display = 'none';
-            const usernameDisplay = document.getElementById('usernameDisplay');
-            usernameDisplay.textContent = `Welcome, ${username}`;
-            usernameDisplay.style.display = 'inline';
+            document.getElementById('userGreeting').textContent = `Welcome, ${username}!`;
         }
     </script>
 </body>

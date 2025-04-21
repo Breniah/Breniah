@@ -11,6 +11,10 @@
         <h1>Login to CoCo Solstice</h1>
     </header>
     <main>
+        <section class="login">
+            <h1>Welcome Back!</h1>
+            <button onclick="location.href='signup.html'">Sign Up</button>
+        </section>
         <form id="loginForm">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -39,12 +43,27 @@
             });
 
             if (response.ok) {
-                // Store the username in localStorage
+         
                 localStorage.setItem('username', username);
-                // Redirect to index.html
+             
                 window.location.href = 'index.html';
             } else {
                 alert('Login failed. Please check your credentials.');
+            }
+        });
+
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', function(event) {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                alert('Passwords do not match. Please try again.');
+            } else {
+    
+                localStorage.setItem('username', username);
             }
         });
     </script>
